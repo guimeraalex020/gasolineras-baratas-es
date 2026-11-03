@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gasolineras Baratas en España | Comparador de Precios de Combustible</title>
+  <meta name="description" content="Encuentra las gasolineras más baratas cerca de ti. Compara precios de Gasóleo A, Gasolina 95 y 98 en tiempo real con datos oficiales del Ministerio.">
+  <meta name="keywords" content="gasolineras baratas, precio gasolina, precio diésel, combustible barato, gasolineras cerca de mí, España">
+  <meta name="author" content="Gasolineras Baratas España">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gasolinerasbaratas.es/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gasolineras Baratas en España | Comparador de Precios">
+  <meta property="og:description" content="Encuentra las gasolineras más baratas cerca de ti. Compara precios de Gasóleo A, Gasolina 95 y 98 en tiempo real.">
+  <meta property="og:url" content="https://gasolinerasbaratas.es/">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gasolineras Baratas en España">
+  <meta name="twitter:description" content="Compara precios de combustible en España. Datos oficiales actualizados.">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛽</text></svg>">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gasolineras Baratas España",
+    "description": "Buscador de gasolineras baratas en España con precios oficiales del Ministerio",
+    "url": "https://gasolinerasbaratas.es",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "inLanguage": "es-ES"
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <span class="logo-icon">⛽</span>
+        <span>Gasolineras Baratas</span>
+      </a>
+      <nav class="nav">
+        <a href="/" class="nav-link active">Buscador</a>
+        <a href="#ciudades" class="nav-link">Ciudades</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Encuentra la gasolinera más barata cerca de ti</h1>
+        <p>Compara precios de combustible en más de 12.000 gasolineras de España con datos oficiales del Ministerio</p>
+        <div id="trustChip" class="trust-chip">
+          <span class="trust-chip-icon">✓</span>
+          <span>Datos oficiales del Ministerio</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Slot: After Hero -->
+    <div class="container">
+      <div class="ad-slot" data-ad="hero"></div>
+    </div>
+
+    <!-- Search Section -->
+    <section class="container">
+      <div class="search-section">
+        <form class="search-form" onsubmit="return false;">
+          <div class="search-row">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Buscar por ciudad o código postal..."
+                autocomplete="off"
+                aria-label="Buscar por ciudad o código postal"
+              >
+            </div>
+            <button type="button" id="geoBtn" class="geo-btn" title="Usar mi ubicación" aria-label="Usar mi ubicación">
+              📍
+            </button>
+          </div>
+          <div class="search-row">
+            <select id="fuelSelect" class="search-select" aria-label="Tipo de combustible">
+              <option value="gasoleoA">Gasóleo A (Diésel)</option>
+              <option value="gasolina95">Gasolina 95</option>
+              <option value="gasolina98">Gasolina 98</option>
+              <option value="gasoleoB">Gasóleo B (Agrícola)</option>
+              <option value="glp">GLP (Autogas)</option>
+            </select>
+            <button type="button" id="searchBtn" class="search-btn">
+              <span>Buscar</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+      <div class="container">
+        <div class="results-header">
+          <p id="resultsCount" class="results-count">Cargando gasolineras...</p>
+          <div class="sort-controls">
+            <button class="sort-btn active" data-sort="price">Precio</button>
+            <button class="sort-btn" data-sort="distance">Distancia</button>
+          </div>
+        </div>
+
+        <div id="resultsGrid" class="results-grid">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span class="loading-text">Cargando gasolineras...</span>
+          </div>
+        </div>
+
+        <!-- Ad Slot: After Results -->
+        <div class="ad-slot" data-ad="results"></div>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="container">
+      <div class="disclaimer">
+        <span class="disclaimer-icon">⚠️</span>
+        <p>Los precios mostrados son datos oficiales del Ministerio para la Transición Ecológica y el Reto Demográfico. Los precios en surtidor pueden variar. Esta herramienta es solo informativa y no garantiza la exactitud de los precios en el momento de la compra.</p>
+      </div>
+    </div>
+
+    <!-- Cities Section -->
+    <section id="ciudades" class="cities-section">
+      <div class="container">
+        <h2 class="section-title">Gasolineras baratas por ciudad</h2>
+        <div class="cities-grid">
+          <a href="ciudad/madrid.html" class="city-link">Madrid</a>
+          <a href="ciudad/barcelona.html" class="city-link">Barcelona</a>
+          <a href="ciudad/valencia.html" class="city-link">Valencia</a>
+          <a href="ciudad/sevilla.html" class="city-link">Sevilla</a>
+          <a href="ciudad/zaragoza.html" class="city-link">Zaragoza</a>
+          <a href="ciudad/malaga.html" class="city-link">Málaga</a>
+          <a href="ciudad/murcia.html" class="city-link">Murcia</a>
+          <a href="ciudad/palma.html" class="city-link">Palma</a>
+          <a href="ciudad/bilbao.html" class="city-link">Bilbao</a>
+          <a href="ciudad/alicante.html" class="city-link">Alicante</a>
+          <a href="ciudad/cordoba.html" class="city-link">Córdoba</a>
+          <a href="ciudad/valladolid.html" class="city-link">Valladolid</a>
+          <a href="ciudad/vigo.html" class="city-link">Vigo</a>
+          <a href="ciudad/gijon.html" class="city-link">Gijón</a>
+          <a href="ciudad/hospitalet.html" class="city-link">L'Hospitalet</a>
+          <a href="ciudad/vitoria.html" class="city-link">Vitoria</a>
+          <a href="ciudad/coruna.html" class="city-link">A Coruña</a>
+          <a href="ciudad/granada.html" class="city-link">Granada</a>
+          <a href="ciudad/elche.html" class="city-link">Elche</a>
+          <a href="ciudad/oviedo.html" class="city-link">Oviedo</a>
+          <a href="ciudad/badalona.html" class="city-link">Badalona</a>
+          <a href="ciudad/terrassa.html" class="city-link">Terrassa</a>
+          <a href="ciudad/sabadell.html" class="city-link">Sabadell</a>
+          <a href="ciudad/girona.html" class="city-link">Girona</a>
+          <a href="ciudad/santander.html" class="city-link">Santander</a>
+          <a href="ciudad/pamplona.html" class="city-link">Pamplona</a>
+          <a href="ciudad/almeria.html" class="city-link">Almería</a>
+          <a href="ciudad/burgos.html" class="city-link">Burgos</a>
+          <a href="ciudad/san-sebastian.html" class="city-link">San Sebastián</a>
+          <a href="ciudad/albacete.html" class="city-link">Albacete</a>
+          <a href="ciudad/castellon.html" class="city-link">Castellón</a>
+          <a href="ciudad/salamanca.html" class="city-link">Salamanca</a>
+          <a href="ciudad/logrono.html" class="city-link">Logroño</a>
+          <a href="ciudad/huelva.html" class="city-link">Huelva</a>
+          <a href="ciudad/badajoz.html" class="city-link">Badajoz</a>
+          <a href="ciudad/tarragona.html" class="city-link">Tarragona</a>
+          <a href="ciudad/leon.html" class="city-link">León</a>
+          <a href="ciudad/lleida.html" class="city-link">Lleida</a>
+          <a href="ciudad/cadiz.html" class="city-link">Cádiz</a>
+          <a href="ciudad/jaen.html" class="city-link">Jaén</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿De dónde provienen los datos de precios?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Los precios se obtienen directamente del <strong>Ministerio para la Transición Ecológica y el Reto Demográfico</strong> a través de su API oficial de geoportal de gasolineras. Los datos se actualizan automáticamente cada 30-60 minutos para reflejar los últimos precios reportados por las estaciones de servicio.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Los precios mostrados son exactos?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Los precios son los reportados oficialmente por cada gasolinera al Ministerio. Sin embargo, puede haber un pequeño desfase entre la actualización en nuestro sistema y el precio real en el surtidor. Recomendamos confirmar el precio en la estación antes de repostar.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Con qué frecuencia se actualizan los precios?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Nuestro sistema actualiza los datos automáticamente cada 30-60 minutos. La fecha y hora de la última actualización se muestra en la parte superior de la página. Las gasolineras están obligadas a reportar cambios de precio, pero la frecuencia de reporte puede variar.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Qué tipos de combustible puedo comparar?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Puedes comparar precios de <strong>Gasóleo A</strong> (diésel normal), <strong>Gasolina 95 E5</strong>, <strong>Gasolina 98 E5</strong>, <strong>Gasóleo B</strong> (agrícola) y <strong>GLP</strong> (autogas). No todas las gasolineras ofrecen todos los tipos de combustible.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Cómo funciona la búsqueda por ubicación?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Al pulsar el botón de ubicación 📍, tu navegador solicitará permiso para acceder a tu ubicación GPS. Una vez concedido, ordenamos las gasolineras por distancia desde tu posición actual. Tu ubicación nunca se guarda ni se envía a terceros.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Por qué algunas gasolineras muestran "N/D"?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>"N/D" significa "No Disponible". Esto ocurre cuando la gasolinera no ofrece ese tipo de combustible o no ha reportado el precio al Ministerio. Es común en combustibles menos frecuentes como Gasolina 98 o GLP.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Slot: Bottom -->
+    <div class="container">
+      <div class="ad-slot" data-ad="bottom"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Gasolineras Baratas</h3>
+          <p style="opacity: 0.8; font-size: 0.875rem; margin-top: 0.5rem;">Comparador gratuito de precios de combustible en España con datos oficiales del Ministerio.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Ciudades populares</h3>
+          <ul>
+            <li><a href="ciudad/madrid.html">Gasolineras Madrid</a></li>
+            <li><a href="ciudad/barcelona.html">Gasolineras Barcelona</a></li>
+            <li><a href="ciudad/valencia.html">Gasolineras Valencia</a></li>
+            <li><a href="ciudad/sevilla.html">Gasolineras Sevilla</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Información</h3>
+          <ul>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li><a href="https://geoportalgasolineras.es" target="_blank" rel="noopener">Fuente oficial</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Gasolineras Baratas España. Datos: Ministerio para la Transición Ecológica.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
